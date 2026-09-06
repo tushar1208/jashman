@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/submit", "destination": "/api/submit.js" },
+    { "source": "/api/submissions", "destination": "/api/submissions.js" },
+    { "source": "/api/config", "destination": "/api/config.js" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

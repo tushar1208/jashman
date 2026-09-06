@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Master 100 MCQ Assessment Portal (1500+ Question Bank)</title>
+<style>
+:root {
+  --bg-primary: #0b0f19;
+  --bg-card: #151c2c;
+  --bg-input: #1e283d;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --border: #2d3748;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --code-bg: #0f172a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+body { background: var(--bg-primary); color: var(--text-main); line-height: 1.5; min-height: 100vh; }
+
+header { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+.brand { font-size: 1.25rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 0.6rem; }
+.brand-logo { width: 32px; height: 32px; background: linear-gradient(135deg, #38bdf8, #6366f1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff; }
+.badge { background: var(--accent); color: #fff; padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.badge-basic { background: #059669; }
+.badge-intermediate { background: #d97706; }
+.badge-advance { background: #dc2626; }
+
+.screen { display: none; padding: 2rem; max-width: 1200px; margin: 0 auto; }
+.screen.active { display: block; }
+
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.75rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+
+label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-muted); font-weight: 600; }
+input[type="text"], input[type="password"], textarea, select { width: 100%; padding: 0.8rem 1rem; background: var(--bg-input); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text-main); font-size: 1rem; margin-bottom: 1.2rem; outline: none; transition: border-color 0.2s; }
+input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; background: var(--accent); color: #fff; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; gap: 0.5rem; font-size: 0.95rem; }
+.btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-secondary { background: #374151; color: #f3f4f6; }
+.btn-secondary:hover { background: #4b5563; }
+.btn-danger { background: var(--danger); }
+.btn-danger:hover { background: #dc2626; }
+.btn-success { background: var(--success); }
+.btn-success:hover { background: #059669; }
+.btn-warning { background: var(--warning); color: #1e293b; }
+.btn-warning:hover { background: #d97706; color: #fff; }
+.btn-whatsapp { background: #25D366; color: #fff; }
+.btn-whatsapp:hover { background: #1da851; }
+.btn-sm { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+@media (max-width: 900px) { .grid-2, .grid-3, .grid-6 { grid-template-columns: 1fr; } }
+
+.topic-tag-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+.topic-tag { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.4rem 0.8rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
+
+.exam-layout { display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem; }
+@media (max-width: 900px) { .exam-layout { grid-template-columns: 1fr; } }
+
+.q-palette-container { max-height: 520px; overflow-y: auto; padding-right: 0.5rem; }
+.q-palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; }
+.q-btn { padding: 0.6rem 0.3rem; background: var(--bg-input); border: 1px solid var(--border); border-radius: 0.375rem; color: var(--text-main); font-size: 0.85rem; font-weight: 600; cursor: pointer; text-align: center; transition: all 0.15s; }
+.q-btn:hover { border-color: var(--accent); }
+.q-btn.answered { background: #065f46; border-color: #059669; color: #a7f3d0; }
+.q-btn.review { background: #581c87; border-color: #9333ea; color: #f3e8ff; }
+.q-btn.current { border: 2px solid var(--accent); box-shadow: 0 0 8px rgba(99, 102, 241, 0.5); font-weight: bold; }
+
+.q-card { border-left: 4px solid var(--accent); position: relative; }
+.q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+.q-topic { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; background: #312e81; color: #c7d2fe; padding: 0.25rem 0.6rem; border-radius: 0.25rem; font-weight: 700; }
+.q-text { font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.2rem; font-weight: 500; white-space: pre-wrap; word-break: break-word; }
+
+.mcq-option { display: flex; align-items: flex-start; gap: 0.8rem; padding: 0.9rem 1.1rem; background: var(--bg-input); border: 1.5px solid var(--border); border-radius: 0.5rem; margin-bottom: 0.75rem; cursor: pointer; transition: all 0.2s; }
+.mcq-option:hover { background: #243047; border-color: var(--accent); }
+.mcq-option.selected { background: rgba(99, 102, 241, 0.15); border-color: var(--accent); }
+.mcq-option input[type="radio"] { accent-color: var(--accent); width: 1.2rem; height: 1.2rem; margin-top: 0.15rem; }
+.mcq-option-label { flex: 1; font-size: 0.95rem; line-height: 1.4; color: var(--text-main); font-family: monospace, sans-serif; }
+
+.timer-bar { font-weight: 700; font-size: 1.2rem; color: #38bdf8; font-family: monospace; display: flex; align-items: center; gap: 0.5rem; background: #0f172a; padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid var(--border); }
+.timer-warning { color: var(--danger); animation: pulse 1s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+.progress-container { width: 100%; background: var(--bg-input); height: 10px; border-radius: 5px; overflow: hidden; margin: 1rem 0; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #10b981); width: 0%; transition: width 0.3s; }
+
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(4px); z-index: 1000; justify-content: center; align-items: center; }
+.modal-overlay.show { display: flex; }
+.modal { background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.75rem; width: 90%; max-width: 600px; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); position: relative; max-height: 90vh; overflow-y: auto; }
+
+.score-circle { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, #1e293b 60%, var(--bg-card) 61%); border: 6px solid var(--accent); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+.score-num { font-size: 2.2rem; font-weight: 800; color: #fff; }
+.score-total { font-size: 0.85rem; color: var(--text-muted); }
+
+.review-item { background: var(--bg-input); border: 1px solid var(--border); border-radius: 0.5rem; padding: 1.2rem; margin-bottom: 1rem; }
+.review-item.correct { border-left: 4px solid var(--success); }
+.review-item.incorrect { border-left: 4px solid var(--danger); }
+.review-item.unanswered { border-left: 4px solid var(--warning); }
+
+.exp-box { background: #0f172a; border: 1px solid var(--border); border-radius: 0.375rem; padding: 0.8rem 1rem; margin-top: 0.8rem; font-size: 0.9rem; color: #cbd5e1; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: #1e293b; color: var(--text-muted); font-weight: 600; }
+tr:hover { background: rgba(255, 255, 255, 0.02); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-logo">Py</div>
+    <span>Python Master Assessment Portal</span>
+    <span class="badge" id="header-level-badge">1500+ Questions</span>
+  </div>
+  <div style="display:flex; gap:0.75rem; align-items:center;">
+    <button class="btn btn-secondary btn-sm" onclick="openAdminModal()">Instructor Dashboard</button>
+  </div>
+</header>
+
+<div id="screen-reg" class="screen active">
+  <div class="card" style="max-width: 800px; margin: 2rem auto;">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h1 style="font-size: 2rem; margin-bottom: 0.5rem; color: #fff;">🐍 Python 100 MCQ Examination</h1>
+      <p style="color: var(--text-muted);">Test your knowledge with 100 randomly sampled Python questions from our 1500+ Question Bank.</p>
+    </div>
+
+    <form onsubmit="startTest(event)">
+      <div class="grid-2">
+        <div>
+          <label for="student-name">Student Full Name *</label>
+          <input type="text" id="student-name" required placeholder="e.g. John Doe">
+        </div>
+        <div>
+          <label for="student-roll">Roll / Registration Number *</label>
+          <input type="text" id="student-roll" required placeholder="e.g. PY-2026-089">
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label for="student-phone">Contact / Mobile Number * (For receiving test results)</label>
+        <input type="text" id="student-phone" required placeholder="e.g. +91 9876543210">
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label for="test-level">Choose Difficulty Level *</label>
+        <select id="test-level" required onchange="updateLevelInfo()">
+          <option value="basic" selected>🟢 Basic Level (Syntax, Data types, Loops & Basic Operators)</option>
+          <option value="intermediate">🟡 Intermediate Level (Methods, Slicing, Comprehensions & Modules)</option>
+          <option value="advance">🔴 Advance Level (Recursion, OOP, Generators, Bitwise & Complex Logic)</option>
+        </select>
+      </div>
+
+      <div class="card" style="background: #0f172a; padding: 1.2rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span style="font-weight: 700; color: #38bdf8;">Question Bank Readiness</span>
+          <span id="level-q-count" class="badge">Checking...</span>
+        </div>
+        <div style="font-size: 0.875rem; color: var(--text-muted);" id="level-stats-desc">
+          Questions are selected randomly for every test. Previously attempted questions are tracked to ensure no repetitions!
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label>Covered Python Topics (100 Questions total):</label>
+        <div class="topic-tag-list">
+          <span class="topic-tag">📊 Datatypes</span>
+          <span class="topic-tag">🔀 Conditional Statements</span>
+          <span class="topic-tag">🔄 Loops</span>
+          <span class="topic-tag">📦 Modules</span>
+          <span class="topic-tag">⚡ Functions</span>
+          <span class="topic-tag">➕ Operators</span>
+        </div>
+      </div>
+
+      <div class="card" style="background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.3); font-size: 0.9rem;">
+        <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.4rem;">📋 Examination Rules & Global Sync:</div>
+        <ul style="padding-left: 1.2rem; color: var(--text-muted); line-height: 1.6;">
+          <li>Total Questions: <strong>100 Multiple Choice Questions (1 Mark Each)</strong>.</li>
+          <li>Global Cloud Sync: <strong>Results automatically sync to Instructor Dashboard worldwide</strong>.</li>
+          <li>Instant Results: Scorecard sent to your contact number upon completion.</li>
+          <li>Randomization: <strong>Questions do not repeat</strong> across consecutive test attempts.</li>
+        </ul>
+      </div>
+
+      <button type="submit" class="btn btn-success" style="width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1rem;">
+        🚀 Start 100 MCQ Python Exam
+      </button>
+    </form>
+  </div>
+</div>
+
+<div id="screen-exam" class="screen">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <div>
+      <h2 style="font-size: 1.3rem;" id="exam-student-display">Student: ...</h2>
+      <span class="badge" id="exam-level-display">BASIC LEVEL</span>
+    </div>
+    <div class="timer-bar" id="exam-timer">
+      ⏱️ <span id="timer-text">90:00</span>
+    </div>
+  </div>
+
+  <div class="progress-container">
+    <div class="progress-fill" id="exam-progress"></div>
+  </div>
+
+  <div class="exam-layout">
+    <div>
+      <div class="card q-card">
+        <div class="q-meta">
+          <span class="q-topic" id="q-topic-tag">DATATYPE</span>
+          <span style="font-weight: 700; color: var(--text-muted);" id="q-num-display">Question 1 of 100</span>
+        </div>
+
+        <div class="q-text" id="q-text-body">Loading question...</div>
+
+        <div id="q-options-container">
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-warning btn-sm" onclick="toggleMarkReview()">📌 Mark for Review</button>
+            <button class="btn btn-secondary btn-sm" onclick="clearOption()">🧹 Clear Answer</button>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary" id="btn-prev" onclick="prevQuestion()">&larr; Previous</button>
+            <button class="btn" id="btn-next" onclick="nextQuestion()">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h3 style="font-size: 1rem; margin-bottom: 0.8rem; display: flex; justify-content: space-between;">
+          <span>Question Palette (100)</span>
+          <span style="color: var(--accent);" id="palette-count">0/100</span>
+        </h3>
+
+        <div style="display: flex; gap: 0.8rem; margin-bottom: 1rem; font-size: 0.75rem; flex-wrap: wrap;">
+          <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:#065f46;border-radius:2px;"></span> Answered</span>
+          <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:#581c87;border-radius:2px;"></span> Review</span>
+          <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:var(--bg-input);border:1px solid var(--border);border-radius:2px;"></span> Unanswered</span>
+        </div>
+
+        <div class="q-palette-container">
+          <div class="q-palette" id="q-palette-grid">
+          </div>
+        </div>
+
+        <button class="btn btn-danger" style="width: 100%; margin-top: 1.2rem;" onclick="confirmSubmitExam()">
+          🏁 Submit Examination
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-result" class="screen">
+  <div class="card" style="text-align: center; padding: 2rem;">
+    <div style="display: flex; justify-content: center; margin-bottom: 0.5rem;">
+      <span class="badge" id="sync-status-badge" style="background: #059669; font-size: 0.85rem; padding: 0.3rem 0.8rem;">🌐 Global Cloud Sync: Active</span>
+    </div>
+    <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;" id="res-status-title">Exam Submitted Successfully</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem;" id="res-student-info">Student: John Doe | Level: Basic</p>
+
+    <div class="score-circle" id="res-score-circle">
+      <div class="score-num" id="res-score-val">85</div>
+      <div class="score-total">/ 100 Marks</div>
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+      <span class="badge badge-basic" id="res-pass-badge" style="font-size: 1rem; padding: 0.5rem 1rem;">PASSED (85%)</span>
+    </div>
+
+    <div class="card" style="background: #0f172a; padding: 1.2rem; margin-bottom: 1.8rem; border-color: rgba(37, 211, 102, 0.4);">
+      <h4 style="font-size: 1rem; color: #25D366; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+        📱 Send Scorecard to Contact Number (<span id="res-phone-display">+91...</span>)
+      </h4>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+        Your result has been logged and synced globally. Click below to instantly send your full result report to your phone via WhatsApp / SMS!
+      </p>
+      <a id="whatsapp-send-link" target="_blank" href="#" class="btn btn-whatsapp" style="padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+        💬 Send Result to Contact Number on WhatsApp / SMS
+      </a>
+    </div>
+
+    <h3 style="font-size: 1.1rem; text-align: left; margin-bottom: 1rem;">📊 Performance Breakdown by Python Topic</h3>
+    <div class="grid-3" id="topic-breakdown-grid">
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+      <button class="btn btn-success" onclick="restartNewTest()">🔄 Take Another Test (New 100 Questions)</button>
+      <button class="btn btn-secondary" onclick="showScreen('screen-reg')">🏠 Back to Registration</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <h3>📖 Complete Question-by-Question Detailed Review</h3>
+      <select id="review-filter" style="width: auto; margin: 0;" onchange="renderQuestionReview()">
+        <option value="all">Show All 100 Questions</option>
+        <option value="incorrect">Show Incorrect Answers Only</option>
+        <option value="correct">Show Correct Answers Only</option>
+        <option value="unanswered">Show Unanswered Questions</option>
+      </select>
+    </div>
+
+    <div id="review-list-container">
+    </div>
+  </div>
+</div>
+
+<div id="screen-admin" class="screen">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+    <div>
+      <h2>Instructor Administration & Global Results Dashboard</h2>
+      <p style="color:var(--text-muted);">View all student 100 MCQ test submissions synced worldwide from any device.</p>
+    </div>
+    <button class="btn btn-secondary btn-sm" onclick="showScreen('screen-reg')">&larr; Exit Admin</button>
+  </div>
+
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem; flex-wrap:wrap; gap:0.5rem;">
+      <h3 style="font-size:1.1rem;">Worldwide Student Examination Submissions</h3>
+      <div style="display:flex; gap:0.75rem;">
+        <button class="btn btn-secondary btn-sm" onclick="fetchGlobalSubmissions()">🔄 Refresh Live Submissions</button>
+        <button class="btn btn-success btn-sm" onclick="exportAdminCSV()">📊 Export CSV</button>
+        <button class="btn btn-danger btn-sm" onclick="clearAdminSubmissions()">Delete All Results</button>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Roll Number</th>
+            <th>Contact Number</th>
+            <th>Level</th>
+            <th>Score (/100)</th>
+            <th>Percentage</th>
+            <th>Status</th>
+            <th>Date & Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="admin-table-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="modal-admin" class="modal-overlay">
+  <div class="modal">
+    <h3 style="margin-bottom: 0.5rem;">Instructor Passcode Authentication</h3>
+    <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom: 1.2rem;">Enter passcode to access dashboard (Default: Bunny123).</p>
+    <form onsubmit="handleAdminLogin(event)">
+      <label for="admin-pass">Security Passcode</label>
+      <input type="password" id="admin-pass" required placeholder="Enter passcode" autofocus>
+      <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top: 1rem;">
+        <button type="button" class="btn btn-secondary" onclick="closeAdminModal()">Cancel</button>
+        <button type="submit" class="btn">Authenticate</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="modal-submit-confirm" class="modal-overlay">
+  <div class="modal" style="text-align: center;">
+    <h3 style="margin-bottom: 0.8rem;">Confirm Exam Submission</h3>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem;" id="submit-confirm-msg">
+      Are you sure you want to submit your 100 MCQ exam now?
+    </p>
+    <div style="display:flex; justify-content:center; gap:1rem;">
+      <button class="btn btn-secondary" onclick="closeModal('modal-submit-confirm')">Return to Exam</button>
+      <button class="btn btn-success" onclick="submitExamFinal()">Yes, Submit Exam</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/questions.js"></script>
+
+<script>
+let currentStudent = { name: '', roll: '', phone: '', level: 'basic', token: '' };
+let activeExamQuestions = [];
+let userAnswers = {};
+let userReviews = {};
+let currentQIndex = 0;
+let timerInterval = null;
+let secondsRemaining = 90 * 60;
+
+const TOPICS = [
+  { key: 'datatype', name: 'Datatypes' },
+  { key: 'conditional statement', name: 'Conditional Statements' },
+  { key: 'loops', name: 'Loops' },
+  { key: 'module', name: 'Modules' },
+  { key: 'functions', name: 'Functions' },
+  { key: 'operators', name: 'Operators' }
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLevelInfo();
+});
+
+function showScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+}
+
+function updateLevelInfo() {
+  const selectedLevel = document.getElementById('test-level').value;
+  if (typeof PYTHON_QUESTION_BANK === 'undefined') return;
+
+  const levelPool = PYTHON_QUESTION_BANK.filter(q => q.level === selectedLevel);
+  const seenKey = `py_seen_${selectedLevel}`;
+  const seenIds = JSON.parse(localStorage.getItem(seenKey) || '[]');
+  
+  const countBadge = document.getElementById('level-q-count');
+  const statsDesc = document.getElementById('level-stats-desc');
+
+  countBadge.textContent = `${levelPool.length} Questions Available`;
+  countBadge.className = `badge badge-${selectedLevel}`;
+  
+  statsDesc.innerHTML = `Total pool for <strong>${selectedLevel.toUpperCase()}</strong>: ${levelPool.length} questions.<br>You have attempted <strong>${seenIds.length}</strong> / ${levelPool.length} questions in this level so far.`;
+}
+
+function startTest(e) {
+  e.preventDefault();
+  const name = document.getElementById('student-name').value.trim();
+  const roll = document.getElementById('student-roll').value.trim();
+  const phone = document.getElementById('student-phone').value.trim();
+  const level = document.getElementById('test-level').value;
+
+  if (!name || !roll || !phone) {
+    alert('Please enter your name, roll number, and contact number.');
+    return;
+  }
+
+  const token = 'st_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+  currentStudent = { name, roll, phone, level, token };
+  
+  const pool = PYTHON_QUESTION_BANK.filter(q => q.level === level);
+  const seenKey = `py_seen_${level}`;
+  let seenIds = new Set(JSON.parse(localStorage.getItem(seenKey) || '[]'));
+
+  let candidates = pool.filter(q => !seenIds.has(q.id));
+
+  if (candidates.length < 100) {
+    seenIds.clear();
+    localStorage.setItem(seenKey, '[]');
+    candidates = [...pool];
+  }
+
+  candidates.sort(() => Math.random() - 0.5);
+  activeExamQuestions = candidates.slice(0, 100);
+
+  activeExamQuestions.forEach(q => seenIds.add(q.id));
+  localStorage.setItem(seenKey, JSON.stringify(Array.from(seenIds)));
+
+  userAnswers = {};
+  userReviews = {};
+  currentQIndex = 0;
+  secondsRemaining = 90 * 60;
+
+  document.getElementById('exam-student-display').textContent = `Student: ${name} (${roll})`;
+  document.getElementById('exam-level-display').textContent = `${level.toUpperCase()} LEVEL`;
+  document.getElementById('exam-level-display').className = `badge badge-${level}`;
+
+  renderPalette();
+  loadQuestion(0);
+  startTimer();
+
+  showScreen('screen-exam');
+}
+
+function loadQuestion(idx) {
+  if (idx < 0 || idx >= activeExamQuestions.length) return;
+  currentQIndex = idx;
+  const q = activeExamQuestions[idx];
+
+  document.getElementById('q-topic-tag').textContent = q.topic.toUpperCase();
+  document.getElementById('q-num-display').textContent = `Question ${idx + 1} of ${activeExamQuestions.length}`;
+  document.getElementById('q-text-body').textContent = q.q;
+
+  const container = document.getElementById('q-options-container');
+  container.innerHTML = '';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  q.opts.forEach((optText, oIdx) => {
+    const isSelected = userAnswers[idx] === oIdx;
+    const optDiv = document.createElement('div');
+    optDiv.className = `mcq-option ${isSelected ? 'selected' : ''}`;
+    optDiv.onclick = () => selectOption(oIdx);
+    
+    optDiv.innerHTML = `
+      <input type="radio" name="opt_choice" ${isSelected ? 'checked' : ''}>
+      <div class="mcq-option-label"><strong>${letters[oIdx]}.</strong> ${escapeHtml(optText)}</div>
+    `;
+    container.appendChild(optDiv);
+  });
+
+  document.getElementById('btn-prev').disabled = (idx === 0);
+  document.getElementById('btn-next').textContent = (idx === activeExamQuestions.length - 1) ? 'Review & Submit' : 'Next \u2192';
+
+  updatePaletteHighlight();
+  updateProgress();
+}
+
+function selectOption(oIdx) {
+  userAnswers[currentQIndex] = oIdx;
+  loadQuestion(currentQIndex);
+}
+
+function clearOption() {
+  delete userAnswers[currentQIndex];
+  loadQuestion(currentQIndex);
+}
+
+function toggleMarkReview() {
+  userReviews[currentQIndex] = !userReviews[currentQIndex];
+  updatePaletteHighlight();
+}
+
+function prevQuestion() {
+  if (currentQIndex > 0) loadQuestion(currentQIndex - 1);
+}
+
+function nextQuestion() {
+  if (currentQIndex < activeExamQuestions.length - 1) {
+    loadQuestion(currentQIndex + 1);
+  } else {
+    confirmSubmitExam();
+  }
+}
+
+function renderPalette() {
+  const grid = document.getElementById('q-palette-grid');
+  grid.innerHTML = '';
+  for (let i = 0; i < 100; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'q-btn';
+    btn.id = `pal-btn-${i}`;
+    btn.textContent = i + 1;
+    btn.onclick = () => loadQuestion(i);
+    grid.appendChild(btn);
+  }
+  updatePaletteHighlight();
+}
+
+function updatePaletteHighlight() {
+  let answeredCount = 0;
+  for (let i = 0; i < 100; i++) {
+    const btn = document.getElementById(`pal-btn-${i}`);
+    if (!btn) continue;
+
+    btn.className = 'q-btn';
+    if (i === currentQIndex) btn.classList.add('current');
+
+    if (userAnswers.hasOwnProperty(i)) {
+      btn.classList.add('answered');
+      answeredCount++;
+    } else if (userReviews[i]) {
+      btn.classList.add('review');
+    }
+  }
+  document.getElementById('palette-count').textContent = `${answeredCount}/100`;
+}
+
+function updateProgress() {
+  const answeredCount = Object.keys(userAnswers).length;
+  const pct = (answeredCount / 100) * 100;
+  document.getElementById('exam-progress').style.width = `${pct}%`;
+}
+
+function startTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    secondsRemaining--;
+    if (secondsRemaining <= 0) {
+      clearInterval(timerInterval);
+      alert('Time expired! Submitting exam automatically.');
+      submitExamFinal();
+      return;
+    }
+
+    const mins = Math.floor(secondsRemaining / 60);
+    const secs = secondsRemaining % 60;
+    const timerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    const elem = document.getElementById('timer-text');
+    elem.textContent = timerText;
+
+    if (secondsRemaining < 300) {
+      document.getElementById('exam-timer').classList.add('timer-warning');
+    }
+  }, 1000);
+}
+
+function confirmSubmitExam() {
+  const answeredCount = Object.keys(userAnswers).length;
+  const msg = `You have answered ${answeredCount} out of 100 questions. Are you sure you want to submit?`;
+  document.getElementById('submit-confirm-msg').textContent = msg;
+  document.getElementById('modal-submit-confirm').classList.add('show');
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('show');
+}
+
+function submitExamFinal() {
+  closeModal('modal-submit-confirm');
+  if (timerInterval) clearInterval(timerInterval);
+
+  let score = 0;
+  let topicStats = {};
+  TOPICS.forEach(t => topicStats[t.key] = { total: 0, correct: 0 });
+
+  activeExamQuestions.forEach((q, idx) => {
+    const tKey = q.topic;
+    if (topicStats[tKey]) topicStats[tKey].total++;
+
+    if (userAnswers.hasOwnProperty(idx) && userAnswers[idx] === q.ans) {
+      score++;
+      if (topicStats[tKey]) topicStats[tKey].correct++;
+    }
+  });
+
+  const percentage = (score / 100) * 100;
+  const isPass = score >= 50;
+
+  const record = {
+    id: 'sub_' + Date.now(),
+    student: currentStudent,
+    score: score,
+    total: 100,
+    percentage: percentage.toFixed(1),
+    status: isPass ? 'PASSED' : 'FAILED',
+    date: new Date().toLocaleString(),
+    topicStats: topicStats
+  };
+
+  const submissions = JSON.parse(localStorage.getItem('py_submissions') || '[]');
+  const existingIdx = submissions.findIndex(s => s.student && s.student.token === currentStudent.token);
+  if (existingIdx !== -1) {
+    submissions[existingIdx] = record;
+  } else {
+    submissions.unshift(record);
+  }
+  localStorage.setItem('py_submissions', JSON.stringify(submissions));
+
+  fetch('/api/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(record)
+  }).then(res => res.json())
+    .then(data => {
+      console.log('Global cloud sync status:', data);
+      document.getElementById('sync-status-badge').textContent = '🌐 Global Cloud Sync: Active (Synced Worldwide)';
+    })
+    .catch(err => {
+      console.warn('Global sync offline fallback to local:', err);
+      document.getElementById('sync-status-badge').textContent = '💾 Saved Locally (Cloud Sync Offline)';
+    });
+
+  document.getElementById('res-student-info').textContent = `Student: ${currentStudent.name} (${currentStudent.roll}) | Contact: ${currentStudent.phone} | Level: ${currentStudent.level.toUpperCase()}`;
+  document.getElementById('res-phone-display').textContent = currentStudent.phone;
+  document.getElementById('res-score-val').textContent = score;
+  
+  const badge = document.getElementById('res-pass-badge');
+  badge.textContent = isPass ? `PASSED (${percentage.toFixed(1)}%)` : `FAILED (${percentage.toFixed(1)}%)`;
+  badge.className = isPass ? 'badge badge-basic' : 'badge badge-advance';
+
+  const cleanPhone = currentStudent.phone.replace(/[^0-9]/g, '');
+  const resultMessage = `*Python Examination Result Scorecard*\n` +
+    `---------------------------------------\n` +
+    `👤 Student: ${currentStudent.name}\n` +
+    `🆔 Roll No: ${currentStudent.roll}\n` +
+    `📊 Level: ${currentStudent.level.toUpperCase()}\n` +
+    `🎯 Score: ${score} / 100 Marks (${percentage.toFixed(1)}%)\n` +
+    `🏆 Status: ${isPass ? 'PASSED ✅' : 'FAILED ❌'}\n` +
+    `📅 Date: ${record.date}\n` +
+    `---------------------------------------\n` +
+    `Python Master Assessment Portal`;
+
+  const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(resultMessage)}`;
+  document.getElementById('whatsapp-send-link').href = waUrl;
+
+  const topicGrid = document.getElementById('topic-breakdown-grid');
+  topicGrid.innerHTML = '';
+  TOPICS.forEach(t => {
+    const stat = topicStats[t.key] || { total: 0, correct: 0 };
+    const tPct = stat.total > 0 ? ((stat.correct / stat.total) * 100).toFixed(0) : 0;
+    
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.margin = '0';
+    card.style.background = '#0f172a';
+    card.innerHTML = `
+      <div style="font-size:0.85rem; color:var(--text-muted); font-weight:700;">${t.name.toUpperCase()}</div>
+      <div style="font-size:1.5rem; font-weight:800; margin:0.3rem 0; color:#38bdf8;">${stat.correct} / ${stat.total}</div>
+      <div class="progress-container" style="height:6px; margin:0.4rem 0;"><div class="progress-fill" style="width:${tPct}%;"></div></div>
+      <div style="font-size:0.75rem; color:var(--text-muted); text-align:right;">${tPct}% accuracy</div>
+    `;
+    topicGrid.appendChild(card);
+  });
+
+  renderQuestionReview();
+  showScreen('screen-result');
+}
+
+function renderQuestionReview() {
+  const filter = document.getElementById('review-filter').value;
+  const container = document.getElementById('review-list-container');
+  container.innerHTML = '';
+
+  activeExamQuestions.forEach((q, idx) => {
+    const userChoice = userAnswers[idx];
+    const isCorrect = userChoice === q.ans;
+    const isUnanswered = userChoice === undefined;
+
+    if (filter === 'incorrect' && (isCorrect || isUnanswered)) return;
+    if (filter === 'correct' && !isCorrect) return;
+    if (filter === 'unanswered' && !isUnanswered) return;
+
+    let statusClass = isCorrect ? 'correct' : (isUnanswered ? 'unanswered' : 'incorrect');
+    let statusText = isCorrect ? '✅ Correct (+1 Mark)' : (isUnanswered ? '⚠️ Unanswered (0 Marks)' : '❌ Incorrect (0 Marks)');
+
+    const item = document.createElement('div');
+    item.className = `review-item ${statusClass}`;
+
+    const letters = ['A', 'B', 'C', 'D'];
+    let optsHtml = q.opts.map((optText, oIdx) => {
+      let optStyle = '';
+      if (oIdx === q.ans) optStyle = 'color: #10b981; font-weight: bold;';
+      else if (oIdx === userChoice) optStyle = 'color: #ef4444; font-weight: bold;';
+
+      return `<div style="${optStyle}; margin-top:0.2rem;">${letters[oIdx]}. ${escapeHtml(optText)} ${oIdx === q.ans ? ' (Correct Answer)' : ''} ${oIdx === userChoice && oIdx !== q.ans ? ' (Your Choice)' : ''}</div>`;
+    }).join('');
+
+    item.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+        <span style="font-weight:700; color:#38bdf8;">Q${idx + 1}. [${q.topic.toUpperCase()}]</span>
+        <span style="font-size:0.85rem; font-weight:600;">${statusText}</span>
+      </div>
+      <div style="font-size:1rem; margin-bottom:0.6rem; white-space:pre-wrap;">${escapeHtml(q.q)}</div>
+      <div style="font-size:0.9rem; background:#151c2c; padding:0.8rem; border-radius:0.375rem; margin-bottom:0.6rem;">${optsHtml}</div>
+      <div class="exp-box"><strong>💡 Explanation:</strong> ${escapeHtml(q.exp)}</div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+function restartNewTest() {
+  updateLevelInfo();
+  showScreen('screen-reg');
+}
+
+function openAdminModal() {
+  document.getElementById('modal-admin').classList.add('show');
+}
+function closeAdminModal() {
+  document.getElementById('modal-admin').classList.remove('show');
+}
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const pass = document.getElementById('admin-pass').value;
+  if (pass === 'Bunny123') {
+    closeAdminModal();
+    fetchGlobalSubmissions();
+    showScreen('screen-admin');
+  } else {
+    alert('Invalid Security Passcode');
+  }
+}
+
+function fetchGlobalSubmissions() {
+  const tbody = document.getElementById('admin-table-body');
+  tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--text-muted);">Fetching worldwide submissions...</td></tr>`;
+
+  fetch('/api/submissions')
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'success' && data.submissions && data.submissions.length > 0) {
+        renderAdminRows(data.submissions);
+      } else {
+        const local = JSON.parse(localStorage.getItem('py_submissions') || '[]');
+        renderAdminRows(local);
+      }
+    })
+    .catch(err => {
+      console.warn('Fetching from cloud failed, using local storage:', err);
+      const local = JSON.parse(localStorage.getItem('py_submissions') || '[]');
+      renderAdminRows(local);
+    });
+}
+
+function renderAdminRows(submissions) {
+  const tbody = document.getElementById('admin-table-body');
+  tbody.innerHTML = '';
+
+  if (!submissions || submissions.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--text-muted);">No student test submissions recorded yet.</td></tr>`;
+    return;
+  }
+
+  submissions.forEach(sub => {
+    const phoneNum = (sub.student && sub.student.phone) ? sub.student.phone : 'N/A';
+    const cleanPhone = phoneNum.replace(/[^0-9]/g, '');
+    const waText = encodeURIComponent(`Hello ${sub.student.name}, your Python Exam score is ${sub.score}/100 (${sub.percentage}%) - ${sub.status}.`);
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${escapeHtml(sub.student.name)}</strong></td>
+      <td>${escapeHtml(sub.student.roll)}</td>
+      <td>${escapeHtml(phoneNum)}</td>
+      <td><span class="badge badge-${sub.student.level}">${sub.student.level.toUpperCase()}</span></td>
+      <td><strong>${sub.score} / 100</strong></td>
+      <td>${sub.percentage}%</td>
+      <td><span style="color:${sub.status === 'PASSED' ? '#10b981' : '#ef4444'}; font-weight:bold;">${sub.status}</span></td>
+      <td style="color:var(--text-muted); font-size:0.8rem;">${sub.date}</td>
+      <td>
+        <a href="https://wa.me/${cleanPhone}?text=${waText}" target="_blank" class="btn btn-whatsapp btn-sm" style="text-decoration:none;">
+          💬 Send SMS
+        </a>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function clearAdminSubmissions() {
+  if (confirm('Are you sure you want to delete all student test results?')) {
+    localStorage.removeItem('py_submissions');
+    fetchGlobalSubmissions();
+  }
+}
+
+function exportAdminCSV() {
+  const submissions = JSON.parse(localStorage.getItem('py_submissions') || '[]');
+  if (submissions.length === 0) {
+    alert('No submissions to export.');
+    return;
+  }
+
+  let csvContent = 'data:text/csv;charset=utf-8,Student Name,Roll Number,Contact Number,Level,Score,Percentage,Status,Date\n';
+  submissions.forEach(s => {
+    const ph = s.student.phone || '';
+    csvContent += `"${s.student.name}","${s.student.roll}","${ph}","${s.student.level}",${s.score},${s.percentage}%,"${s.status}","${s.date}"\n`;
+  });
+
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement('a');
+  link.setAttribute('href', encodedUri);
+  link.setAttribute('download', 'python_100mcq_results.csv');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+</script>
+</body>
+</html>

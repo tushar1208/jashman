@@ -1,0 +1,12 @@
+{
+  "name": "multi-topic-assessment-portal",
+  "version": "1.0.0",
+  "description": "Multi-Topic Data Science & Programming Assessment Portal with Global Sync and Anti-AI Security",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
