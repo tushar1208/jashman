@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Python Master 100 MCQ Assessment Portal (1500+ Question Bank)</title>
+<title>BunShai Technohub - Python 100 MCQ Assessment Portal</title>
 <style>
 :root {
   --bg-primary: #0b0f19;
@@ -20,15 +20,17 @@
   --code-bg: #0f172a;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-body { background: var(--bg-primary); color: var(--text-main); line-height: 1.5; min-height: 100vh; }
+body { background: var(--bg-primary); color: var(--text-main); line-height: 1.5; min-height: 100vh; display: flex; flex-direction: column; }
 
-header { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-.brand { font-size: 1.25rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 0.6rem; }
-.brand-logo { width: 32px; height: 32px; background: linear-gradient(135deg, #38bdf8, #6366f1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff; }
+header { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 0.8rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+.brand { font-size: 1.25rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 0.75rem; }
+.brand-img { height: 40px; width: 40px; object-fit: contain; border-radius: 50%; background: #ffffff; padding: 2px; box-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
 .badge { background: var(--accent); color: #fff; padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
 .badge-basic { background: #059669; }
 .badge-intermediate { background: #d97706; }
 .badge-advance { background: #dc2626; }
+
+.main-wrapper { flex: 1; }
 
 .screen { display: none; padding: 2rem; max-width: 1200px; margin: 0 auto; }
 .screen.active { display: block; }
@@ -110,260 +112,270 @@ table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9
 th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
 th { background: #1e293b; color: var(--text-muted); font-weight: 600; }
 tr:hover { background: rgba(255, 255, 255, 0.02); }
+
+footer { text-align: center; padding: 1.5rem 2rem; margin-top: auto; border-top: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: 0.875rem; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="brand">
-    <div class="brand-logo">Py</div>
-    <span>Python Master Assessment Portal</span>
-    <span class="badge" id="header-level-badge">1500+ Questions</span>
+    <img src="logo.png" alt="BunShai Technohub Logo" class="brand-img">
+    <div>
+      <div style="line-height: 1.2;">BunShai Technohub</div>
+      <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 400;">Python Assessment Portal</div>
+    </div>
+    <span class="badge" id="header-level-badge">1500+ Question Bank</span>
   </div>
   <div style="display:flex; gap:0.75rem; align-items:center;">
     <button class="btn btn-secondary btn-sm" onclick="openAdminModal()">Instructor Dashboard</button>
   </div>
 </header>
 
-<div id="screen-reg" class="screen active">
-  <div class="card" style="max-width: 800px; margin: 2rem auto;">
-    <div style="text-align: center; margin-bottom: 2rem;">
-      <h1 style="font-size: 2rem; margin-bottom: 0.5rem; color: #fff;">🐍 Python 100 MCQ Examination</h1>
-      <p style="color: var(--text-muted);">Test your knowledge with 100 randomly sampled Python questions from our 1500+ Question Bank.</p>
+<div class="main-wrapper">
+  <div id="screen-reg" class="screen active">
+    <div class="card" style="max-width: 800px; margin: 2rem auto;">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <img src="logo.png" alt="BunShai Technohub" style="height: 70px; width: 70px; object-fit: contain; border-radius: 50%; background: #ffffff; padding: 3px; margin-bottom: 0.8rem; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);">
+        <h1 style="font-size: 2rem; margin-bottom: 0.3rem; color: #fff;">BunShai Technohub</h1>
+        <p style="color: #38bdf8; font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem;">🐍 Python 100 MCQ Examination Portal</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Test your knowledge with 100 randomly sampled Python questions from our 1500+ Question Bank.</p>
+      </div>
+
+      <form onsubmit="startTest(event)">
+        <div class="grid-2">
+          <div>
+            <label for="student-name">Student Full Name *</label>
+            <input type="text" id="student-name" required placeholder="e.g. John Doe">
+          </div>
+          <div>
+            <label for="student-roll">Roll / Registration Number *</label>
+            <input type="text" id="student-roll" required placeholder="e.g. PY-2026-089">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label for="student-phone">Contact / Mobile Number * (For receiving test results)</label>
+          <input type="text" id="student-phone" required placeholder="e.g. +91 9876543210">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label for="test-level">Choose Difficulty Level *</label>
+          <select id="test-level" required onchange="updateLevelInfo()">
+            <option value="basic" selected>🟢 Basic Level (Syntax, Data types, Loops & Basic Operators)</option>
+            <option value="intermediate">🟡 Intermediate Level (Methods, Slicing, Comprehensions & Modules)</option>
+            <option value="advance">🔴 Advance Level (Recursion, OOP, Generators, Bitwise & Complex Logic)</option>
+          </select>
+        </div>
+
+        <div class="card" style="background: #0f172a; padding: 1.2rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-weight: 700; color: #38bdf8;">Question Bank Readiness</span>
+            <span id="level-q-count" class="badge">Checking...</span>
+          </div>
+          <div style="font-size: 0.875rem; color: var(--text-muted);" id="level-stats-desc">
+            Questions are selected randomly for every test. Previously attempted questions are tracked to ensure no repetitions!
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label>Covered Python Topics (100 Questions total):</label>
+          <div class="topic-tag-list">
+            <span class="topic-tag">📊 Datatypes</span>
+            <span class="topic-tag">🔀 Conditional Statements</span>
+            <span class="topic-tag">🔄 Loops</span>
+            <span class="topic-tag">📦 Modules</span>
+            <span class="topic-tag">⚡ Functions</span>
+            <span class="topic-tag">➕ Operators</span>
+          </div>
+        </div>
+
+        <div class="card" style="background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.3); font-size: 0.9rem;">
+          <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.4rem;">📋 Examination Rules & Global Sync:</div>
+          <ul style="padding-left: 1.2rem; color: var(--text-muted); line-height: 1.6;">
+            <li>Total Questions: <strong>100 Multiple Choice Questions (1 Mark Each)</strong>.</li>
+            <li>Global Cloud Sync: <strong>Results automatically sync to Instructor Dashboard worldwide</strong>.</li>
+            <li>Instant Results: Scorecard sent to your contact number upon completion.</li>
+            <li>Randomization: <strong>Questions do not repeat</strong> across consecutive test attempts.</li>
+          </ul>
+        </div>
+
+        <button type="submit" class="btn btn-success" style="width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1rem;">
+          🚀 Start 100 MCQ Python Exam
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="screen-exam" class="screen">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <div>
+        <h2 style="font-size: 1.3rem;" id="exam-student-display">Student: ...</h2>
+        <span class="badge" id="exam-level-display">BASIC LEVEL</span>
+      </div>
+      <div class="timer-bar" id="exam-timer">
+        ⏱️ <span id="timer-text">90:00</span>
+      </div>
     </div>
 
-    <form onsubmit="startTest(event)">
-      <div class="grid-2">
-        <div>
-          <label for="student-name">Student Full Name *</label>
-          <input type="text" id="student-name" required placeholder="e.g. John Doe">
-        </div>
-        <div>
-          <label for="student-roll">Roll / Registration Number *</label>
-          <input type="text" id="student-roll" required placeholder="e.g. PY-2026-089">
+    <div class="progress-container">
+      <div class="progress-fill" id="exam-progress"></div>
+    </div>
+
+    <div class="exam-layout">
+      <div>
+        <div class="card q-card">
+          <div class="q-meta">
+            <span class="q-topic" id="q-topic-tag">DATATYPE</span>
+            <span style="font-weight: 700; color: var(--text-muted);" id="q-num-display">Question 1 of 100</span>
+          </div>
+
+          <div class="q-text" id="q-text-body">Loading question...</div>
+
+          <div id="q-options-container">
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-warning btn-sm" onclick="toggleMarkReview()">📌 Mark for Review</button>
+              <button class="btn btn-secondary btn-sm" onclick="clearOption()">🧹 Clear Answer</button>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-secondary" id="btn-prev" onclick="prevQuestion()">&larr; Previous</button>
+              <button class="btn" id="btn-next" onclick="nextQuestion()">Next &rarr;</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div style="margin-bottom: 1.5rem;">
-        <label for="student-phone">Contact / Mobile Number * (For receiving test results)</label>
-        <input type="text" id="student-phone" required placeholder="e.g. +91 9876543210">
+      <div>
+        <div class="card">
+          <h3 style="font-size: 1rem; margin-bottom: 0.8rem; display: flex; justify-content: space-between;">
+            <span>Question Palette (100)</span>
+            <span style="color: var(--accent);" id="palette-count">0/100</span>
+          </h3>
+
+          <div style="display: flex; gap: 0.8rem; margin-bottom: 1rem; font-size: 0.75rem; flex-wrap: wrap;">
+            <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:#065f46;border-radius:2px;"></span> Answered</span>
+            <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:#581c87;border-radius:2px;"></span> Review</span>
+            <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:var(--bg-input);border:1px solid var(--border);border-radius:2px;"></span> Unanswered</span>
+          </div>
+
+          <div class="q-palette-container">
+            <div class="q-palette" id="q-palette-grid">
+            </div>
+          </div>
+
+          <button class="btn btn-danger" style="width: 100%; margin-top: 1.2rem;" onclick="confirmSubmitExam()">
+            🏁 Submit Examination
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-result" class="screen">
+    <div class="card" style="text-align: center; padding: 2rem;">
+      <div style="display: flex; justify-content: center; margin-bottom: 0.5rem;">
+        <span class="badge" id="sync-status-badge" style="background: #059669; font-size: 0.85rem; padding: 0.3rem 0.8rem;">🌐 Global Cloud Sync: Active</span>
+      </div>
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;" id="res-status-title">Exam Submitted Successfully</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;" id="res-student-info">Student: John Doe | Level: Basic</p>
+
+      <div class="score-circle" id="res-score-circle">
+        <div class="score-num" id="res-score-val">85</div>
+        <div class="score-total">/ 100 Marks</div>
       </div>
 
-      <div style="margin-bottom: 1.5rem;">
-        <label for="test-level">Choose Difficulty Level *</label>
-        <select id="test-level" required onchange="updateLevelInfo()">
-          <option value="basic" selected>🟢 Basic Level (Syntax, Data types, Loops & Basic Operators)</option>
-          <option value="intermediate">🟡 Intermediate Level (Methods, Slicing, Comprehensions & Modules)</option>
-          <option value="advance">🔴 Advance Level (Recursion, OOP, Generators, Bitwise & Complex Logic)</option>
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <span class="badge badge-basic" id="res-pass-badge" style="font-size: 1rem; padding: 0.5rem 1rem;">PASSED (85%)</span>
+      </div>
+
+      <div class="card" style="background: #0f172a; padding: 1.2rem; margin-bottom: 1.8rem; border-color: rgba(37, 211, 102, 0.4);">
+        <h4 style="font-size: 1rem; color: #25D366; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+          📱 Send Scorecard to Contact Number (<span id="res-phone-display">+91...</span>)
+        </h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+          Your result has been logged and synced globally. Click below to instantly send your full result report to your phone via WhatsApp / SMS!
+        </p>
+        <a id="whatsapp-send-link" target="_blank" href="#" class="btn btn-whatsapp" style="padding: 0.6rem 1.2rem; font-size: 0.95rem;">
+          💬 Send Result to Contact Number on WhatsApp / SMS
+        </a>
+      </div>
+
+      <h3 style="font-size: 1.1rem; text-align: left; margin-bottom: 1rem;">📊 Performance Breakdown by Python Topic</h3>
+      <div class="grid-3" id="topic-breakdown-grid">
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+        <button class="btn btn-success" onclick="restartNewTest()">🔄 Take Another Test (New 100 Questions)</button>
+        <button class="btn btn-secondary" onclick="showScreen('screen-reg')">🏠 Back to Registration</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3>📖 Complete Question-by-Question Detailed Review</h3>
+        <select id="review-filter" style="width: auto; margin: 0;" onchange="renderQuestionReview()">
+          <option value="all">Show All 100 Questions</option>
+          <option value="incorrect">Show Incorrect Answers Only</option>
+          <option value="correct">Show Correct Answers Only</option>
+          <option value="unanswered">Show Unanswered Questions</option>
         </select>
       </div>
 
-      <div class="card" style="background: #0f172a; padding: 1.2rem; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-          <span style="font-weight: 700; color: #38bdf8;">Question Bank Readiness</span>
-          <span id="level-q-count" class="badge">Checking...</span>
-        </div>
-        <div style="font-size: 0.875rem; color: var(--text-muted);" id="level-stats-desc">
-          Questions are selected randomly for every test. Previously attempted questions are tracked to ensure no repetitions!
-        </div>
+      <div id="review-list-container">
       </div>
-
-      <div style="margin-bottom: 1.5rem;">
-        <label>Covered Python Topics (100 Questions total):</label>
-        <div class="topic-tag-list">
-          <span class="topic-tag">📊 Datatypes</span>
-          <span class="topic-tag">🔀 Conditional Statements</span>
-          <span class="topic-tag">🔄 Loops</span>
-          <span class="topic-tag">📦 Modules</span>
-          <span class="topic-tag">⚡ Functions</span>
-          <span class="topic-tag">➕ Operators</span>
-        </div>
-      </div>
-
-      <div class="card" style="background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.3); font-size: 0.9rem;">
-        <div style="font-weight: 700; color: var(--accent); margin-bottom: 0.4rem;">📋 Examination Rules & Global Sync:</div>
-        <ul style="padding-left: 1.2rem; color: var(--text-muted); line-height: 1.6;">
-          <li>Total Questions: <strong>100 Multiple Choice Questions (1 Mark Each)</strong>.</li>
-          <li>Global Cloud Sync: <strong>Results automatically sync to Instructor Dashboard worldwide</strong>.</li>
-          <li>Instant Results: Scorecard sent to your contact number upon completion.</li>
-          <li>Randomization: <strong>Questions do not repeat</strong> across consecutive test attempts.</li>
-        </ul>
-      </div>
-
-      <button type="submit" class="btn btn-success" style="width: 100%; padding: 1rem; font-size: 1.1rem; margin-top: 1rem;">
-        🚀 Start 100 MCQ Python Exam
-      </button>
-    </form>
-  </div>
-</div>
-
-<div id="screen-exam" class="screen">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-    <div>
-      <h2 style="font-size: 1.3rem;" id="exam-student-display">Student: ...</h2>
-      <span class="badge" id="exam-level-display">BASIC LEVEL</span>
-    </div>
-    <div class="timer-bar" id="exam-timer">
-      ⏱️ <span id="timer-text">90:00</span>
     </div>
   </div>
 
-  <div class="progress-container">
-    <div class="progress-fill" id="exam-progress"></div>
-  </div>
-
-  <div class="exam-layout">
-    <div>
-      <div class="card q-card">
-        <div class="q-meta">
-          <span class="q-topic" id="q-topic-tag">DATATYPE</span>
-          <span style="font-weight: 700; color: var(--text-muted);" id="q-num-display">Question 1 of 100</span>
-        </div>
-
-        <div class="q-text" id="q-text-body">Loading question...</div>
-
-        <div id="q-options-container">
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-          <div style="display: flex; gap: 0.5rem;">
-            <button class="btn btn-warning btn-sm" onclick="toggleMarkReview()">📌 Mark for Review</button>
-            <button class="btn btn-secondary btn-sm" onclick="clearOption()">🧹 Clear Answer</button>
-          </div>
-          <div style="display: flex; gap: 0.5rem;">
-            <button class="btn btn-secondary" id="btn-prev" onclick="prevQuestion()">&larr; Previous</button>
-            <button class="btn" id="btn-next" onclick="nextQuestion()">Next &rarr;</button>
-          </div>
-        </div>
+  <div id="screen-admin" class="screen">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+      <div>
+        <h2>Instructor Administration & Global Results Dashboard</h2>
+        <p style="color:var(--text-muted);">View all student 100 MCQ test submissions synced worldwide from any device.</p>
       </div>
+      <button class="btn btn-secondary btn-sm" onclick="showScreen('screen-reg')">&larr; Exit Admin</button>
     </div>
 
-    <div>
-      <div class="card">
-        <h3 style="font-size: 1rem; margin-bottom: 0.8rem; display: flex; justify-content: space-between;">
-          <span>Question Palette (100)</span>
-          <span style="color: var(--accent);" id="palette-count">0/100</span>
-        </h3>
-
-        <div style="display: flex; gap: 0.8rem; margin-bottom: 1rem; font-size: 0.75rem; flex-wrap: wrap;">
-          <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:#065f46;border-radius:2px;"></span> Answered</span>
-          <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:#581c87;border-radius:2px;"></span> Review</span>
-          <span style="display:flex; align-items:center; gap:0.2rem;"><span style="width:12px;height:12px;background:var(--bg-input);border:1px solid var(--border);border-radius:2px;"></span> Unanswered</span>
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem; flex-wrap:wrap; gap:0.5rem;">
+        <h3 style="font-size:1.1rem;">Worldwide Student Examination Submissions</h3>
+        <div style="display:flex; gap:0.75rem;">
+          <button class="btn btn-secondary btn-sm" onclick="fetchGlobalSubmissions()">🔄 Refresh Live Submissions</button>
+          <button class="btn btn-success btn-sm" onclick="exportAdminCSV()">📊 Export CSV</button>
+          <button class="btn btn-danger btn-sm" onclick="clearAdminSubmissions()">Delete All Results</button>
         </div>
+      </div>
 
-        <div class="q-palette-container">
-          <div class="q-palette" id="q-palette-grid">
-          </div>
-        </div>
-
-        <button class="btn btn-danger" style="width: 100%; margin-top: 1.2rem;" onclick="confirmSubmitExam()">
-          🏁 Submit Examination
-        </button>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Roll Number</th>
+              <th>Contact Number</th>
+              <th>Level</th>
+              <th>Score (/100)</th>
+              <th>Percentage</th>
+              <th>Status</th>
+              <th>Date & Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table-body">
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
 
-<div id="screen-result" class="screen">
-  <div class="card" style="text-align: center; padding: 2rem;">
-    <div style="display: flex; justify-content: center; margin-bottom: 0.5rem;">
-      <span class="badge" id="sync-status-badge" style="background: #059669; font-size: 0.85rem; padding: 0.3rem 0.8rem;">🌐 Global Cloud Sync: Active</span>
-    </div>
-    <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;" id="res-status-title">Exam Submitted Successfully</h2>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem;" id="res-student-info">Student: John Doe | Level: Basic</p>
-
-    <div class="score-circle" id="res-score-circle">
-      <div class="score-num" id="res-score-val">85</div>
-      <div class="score-total">/ 100 Marks</div>
-    </div>
-
-    <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-      <span class="badge badge-basic" id="res-pass-badge" style="font-size: 1rem; padding: 0.5rem 1rem;">PASSED (85%)</span>
-    </div>
-
-    <div class="card" style="background: #0f172a; padding: 1.2rem; margin-bottom: 1.8rem; border-color: rgba(37, 211, 102, 0.4);">
-      <h4 style="font-size: 1rem; color: #25D366; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
-        📱 Send Scorecard to Contact Number (<span id="res-phone-display">+91...</span>)
-      </h4>
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">
-        Your result has been logged and synced globally. Click below to instantly send your full result report to your phone via WhatsApp / SMS!
-      </p>
-      <a id="whatsapp-send-link" target="_blank" href="#" class="btn btn-whatsapp" style="padding: 0.6rem 1.2rem; font-size: 0.95rem;">
-        💬 Send Result to Contact Number on WhatsApp / SMS
-      </a>
-    </div>
-
-    <h3 style="font-size: 1.1rem; text-align: left; margin-bottom: 1rem;">📊 Performance Breakdown by Python Topic</h3>
-    <div class="grid-3" id="topic-breakdown-grid">
-    </div>
-
-    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
-      <button class="btn btn-success" onclick="restartNewTest()">🔄 Take Another Test (New 100 Questions)</button>
-      <button class="btn btn-secondary" onclick="showScreen('screen-reg')">🏠 Back to Registration</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-      <h3>📖 Complete Question-by-Question Detailed Review</h3>
-      <select id="review-filter" style="width: auto; margin: 0;" onchange="renderQuestionReview()">
-        <option value="all">Show All 100 Questions</option>
-        <option value="incorrect">Show Incorrect Answers Only</option>
-        <option value="correct">Show Correct Answers Only</option>
-        <option value="unanswered">Show Unanswered Questions</option>
-      </select>
-    </div>
-
-    <div id="review-list-container">
-    </div>
-  </div>
-</div>
-
-<div id="screen-admin" class="screen">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
-    <div>
-      <h2>Instructor Administration & Global Results Dashboard</h2>
-      <p style="color:var(--text-muted);">View all student 100 MCQ test submissions synced worldwide from any device.</p>
-    </div>
-    <button class="btn btn-secondary btn-sm" onclick="showScreen('screen-reg')">&larr; Exit Admin</button>
-  </div>
-
-  <div class="card">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem; flex-wrap:wrap; gap:0.5rem;">
-      <h3 style="font-size:1.1rem;">Worldwide Student Examination Submissions</h3>
-      <div style="display:flex; gap:0.75rem;">
-        <button class="btn btn-secondary btn-sm" onclick="fetchGlobalSubmissions()">🔄 Refresh Live Submissions</button>
-        <button class="btn btn-success btn-sm" onclick="exportAdminCSV()">📊 Export CSV</button>
-        <button class="btn btn-danger btn-sm" onclick="clearAdminSubmissions()">Delete All Results</button>
-      </div>
-    </div>
-
-    <div style="overflow-x:auto;">
-      <table>
-        <thead>
-          <tr>
-            <th>Student Name</th>
-            <th>Roll Number</th>
-            <th>Contact Number</th>
-            <th>Level</th>
-            <th>Score (/100)</th>
-            <th>Percentage</th>
-            <th>Status</th>
-            <th>Date & Time</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="admin-table-body">
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
+<!-- MODALS -->
 <div id="modal-admin" class="modal-overlay">
   <div class="modal">
     <h3 style="margin-bottom: 0.5rem;">Instructor Passcode Authentication</h3>
-    <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom: 1.2rem;">Enter passcode to access dashboard (Default: Bunny123).</p>
+    <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom: 1.2rem;">Enter passcode to access dashboard (Passcode: Bunny123).</p>
     <form onsubmit="handleAdminLogin(event)">
       <label for="admin-pass">Security Passcode</label>
       <input type="password" id="admin-pass" required placeholder="Enter passcode" autofocus>
@@ -387,6 +399,14 @@ tr:hover { background: rgba(255, 255, 255, 0.02); }
     </div>
   </div>
 </div>
+
+<footer>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.5rem;">
+    <img src="logo.png" alt="BunShai Technohub" style="height: 28px; width: 28px; object-fit: contain; border-radius: 50%; background: #ffffff; padding: 1px;">
+    <strong style="color: #fff; font-size: 1rem;">BunShai Technohub</strong>
+  </div>
+  <p>Developed by <strong>BunShai Technohub</strong> with the copyright year 2026.</p>
+</footer>
 
 <script src="js/questions.js"></script>
 
@@ -680,7 +700,7 @@ function submitExamFinal() {
   badge.className = isPass ? 'badge badge-basic' : 'badge badge-advance';
 
   const cleanPhone = currentStudent.phone.replace(/[^0-9]/g, '');
-  const resultMessage = `*Python Examination Result Scorecard*\n` +
+  const resultMessage = `*BunShai Technohub - Python Examination Scorecard*\n` +
     `---------------------------------------\n` +
     `👤 Student: ${currentStudent.name}\n` +
     `🆔 Roll No: ${currentStudent.roll}\n` +
@@ -689,7 +709,7 @@ function submitExamFinal() {
     `🏆 Status: ${isPass ? 'PASSED ✅' : 'FAILED ❌'}\n` +
     `📅 Date: ${record.date}\n` +
     `---------------------------------------\n` +
-    `Python Master Assessment Portal`;
+    `BunShai Technohub Assessment Portal`;
 
   const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(resultMessage)}`;
   document.getElementById('whatsapp-send-link').href = waUrl;
@@ -816,7 +836,7 @@ function renderAdminRows(submissions) {
   submissions.forEach(sub => {
     const phoneNum = (sub.student && sub.student.phone) ? sub.student.phone : 'N/A';
     const cleanPhone = phoneNum.replace(/[^0-9]/g, '');
-    const waText = encodeURIComponent(`Hello ${sub.student.name}, your Python Exam score is ${sub.score}/100 (${sub.percentage}%) - ${sub.status}.`);
+    const waText = encodeURIComponent(`Hello ${sub.student.name}, your Python Exam score is ${sub.score}/100 (${sub.percentage}%) - ${sub.status}. (BunShai Technohub)`);
 
     const tr = document.createElement('tr');
     tr.innerHTML = `
@@ -861,7 +881,7 @@ function exportAdminCSV() {
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement('a');
   link.setAttribute('href', encodedUri);
-  link.setAttribute('download', 'python_100mcq_results.csv');
+  link.setAttribute('download', 'bunshai_python_results.csv');
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
